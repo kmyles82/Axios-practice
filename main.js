@@ -156,7 +156,39 @@ function customHeaders() {
 
 // TRANSFORMING REQUESTS & RESPONSES
 function transformResponse() {
-    console.log('Transform Response');
+    //Method - 1
+    // const options = {
+    //     method: 'post',
+    //     url: 'https://jsonplaceholder.typicode.com/todos',
+    //     data: {
+    //         title: 'Hello World'
+    //     },
+    //     transformResponse: axios.defaults.transformResponse.concat(data => {
+    //         data.title = data.title.toUpperCase();
+    //         return data;
+    //     })
+    // }
+
+    // axios(options).then(res => showOutput(res))
+
+    //Method - 2
+    const options = {
+        transformResponse: axios.defaults.transformResponse.concat(data => {
+            data.title = data.title.toUpperCase();
+            return data;
+        })
+    }
+
+    axios.post('https://jsonplaceholder.typicode.com/todos', {
+        title: 'Hello World',
+        completed: false
+    }, options)
+    .then(res => {
+        showOutput(res)
+    })
+    .catch(err => {
+        console.log(err)
+    })
 }
 
 // ERROR HANDLING
