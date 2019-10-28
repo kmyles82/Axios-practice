@@ -3,13 +3,14 @@ function getTodos() {
     // console.log('GET Request');
     axios({
         method: 'get',
-        url: 'https://jsonplaceholder.typicode.com/todos',
+        url: 'https://jsonplaceholder.typicode.com/todos?_limit=5',
     })
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err => {
-        console.log(err)
+    .then(res => {
+        console.log(res)
+        showOutput(res);
+    })
+    .catch(err => {
+    console.log(err)
     })
 }
 
