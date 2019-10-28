@@ -1,17 +1,38 @@
 // GET REQUEST
 function getTodos() {
-    // console.log('GET Request');
-    axios({
-        method: 'get',
-        url: 'https://jsonplaceholder.typicode.com/todos?_limit=5',
-    })
-    .then(res => {
-        console.log(res)
-        showOutput(res);
-    })
-    .catch(err => {
-    console.log(err)
-    })
+    //Method - 1
+    // axios({
+    //     method: 'get',
+    //     url: 'https://jsonplaceholder.typicode.com/todos?',
+    //     param: {
+    //       _limit: 5
+    //     }
+    // })
+    // .then(res => {
+    //     console.log(res)
+    //     showOutput(res);
+    // })
+    // .catch(err => {
+    // console.log(err)
+    // })
+
+    //Method - 2
+    // axios.get('https://jsonplaceholder.typicode.com/todos?', { params: { _limit:5 }})
+    //     .then(res => {
+    //         showOutput(res)
+    //     }).
+    //     catch(err => {
+    //         console.log(err)
+    //     })
+    
+    //Method - 3
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')
+        .then(res => {
+            showOutput(res)
+        }).
+        catch(err => {
+            console.log(err)
+        })
 }
 
 // POST REQUEST
