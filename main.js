@@ -196,7 +196,21 @@ function transformResponse() {
 
 // ERROR HANDLING
 function errorHandling() {
-    console.log('Error Handling');
+    axios.post('https://jsonplaceholder.typicode.com/todoss', {
+        title: 'New Todo',
+        completed: false
+    })
+    .then(res => {
+        showOutput(res)
+    })
+    .catch(err => {
+        if (err.response) {
+            //Server responded with a status other than the 200 range
+            console.log(err.response.data)
+            console.log(err.response.status)
+            console.log(err.response.headers)
+        }
+    })
 }
 
 // CANCEL TOKEN
