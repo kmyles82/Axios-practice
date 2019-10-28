@@ -38,21 +38,33 @@ function getTodos() {
 // POST REQUEST
 function addTodo() {
     //Method - 1
-    axios({
-        method: 'post',
-        url: 'https://jsonplaceholder.typicode.com/todos?',
-        data: {
-             userId: 2,
-             title: 'New Todo',         
-             completed: false
-        }
+    // axios({
+    //     method: 'post',
+    //     url: 'https://jsonplaceholder.typicode.com/todos',
+    //     data: {
+    //          userId: 2,
+    //          title: 'New Todo',         
+    //          completed: false
+    //     }
+    // })
+    // .then(res => {
+    //     console.log(res)
+    //     showOutput(res);
+    // })
+    // .catch(err => {
+    // console.log(err)
+    // })
+
+    //Method - 2
+    axios.post('https://jsonplaceholder.typicode.com/todos', {
+        title: 'New Todo',
+        completed: false
     })
     .then(res => {
-        console.log(res)
-        showOutput(res);
+        showOutput(res)
     })
     .catch(err => {
-    console.log(err)
+        console.log(err)
     })
 }
 
