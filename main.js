@@ -136,7 +136,22 @@ function getData() {
 
 // CUSTOM HEADERS
 function customHeaders() {
-    //Interceptors
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'sometoken'
+        }
+    }
+    axios.post('https://jsonplaceholder.typicode.com/todos', {
+            title: 'New Todo',
+            completed: false
+        }, config)
+        .then(res => {
+            showOutput(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
 }
 
 // TRANSFORMING REQUESTS & RESPONSES
@@ -162,6 +177,7 @@ axios.interceptors.request.use(config => {
 }, error => {
         return Promise.reject(error)
 });
+
 // AXIOS INSTANCES
 
 // Show output in browser
