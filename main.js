@@ -250,6 +250,13 @@ axios.interceptors.request.use(config => {
 });
 
 // AXIOS INSTANCES
+const axiosInstance = axios.create({
+    baseURL: 'https://jsonplaceholder.typicode.com'
+});
+
+axiosInstance.get('/comments?_limit=5')
+    .then(res => showOutput(res))
+    .catch(err => console.log(err))
 
 // Show output in browser
 function showOutput(res) {
