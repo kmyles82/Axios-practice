@@ -109,15 +109,26 @@ function removeTodo() {
 
 // SIMULTANEOUS DATA
 function getData() {
+    //Method - 1
+    // axios.all([
+    //     axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5'),
+    //     axios.get('https://jsonplaceholder.typicode.com/posts?_limit=5')
+    // ])
+    // .then(res => {
+    //     console.log(res[0])
+    //     console.log(res[1])
+    //     showOutput(res[1])
+    // })
+    // .catch(err => {
+    //     console.log(err)
+    // })
+
+    //Method - 2
     axios.all([
         axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5'),
         axios.get('https://jsonplaceholder.typicode.com/posts?_limit=5')
     ])
-    .then(res => {
-        console.log(res[0])
-        console.log(res[1])
-        showOutput(res[1])
-    })
+    .then(axios.spread((todos, posts) => showOutput(posts)))
     .catch(err => {
         console.log(err)
     })
