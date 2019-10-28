@@ -71,16 +71,28 @@ function addTodo() {
 // PUT/PATCH REQUEST
 function updateTodo() {
     //PUT Request
-    axios.put('https://jsonplaceholder.typicode.com/todos/1', {
-        title: 'Updated Todo',
-        completed: true
-    })
-    .then(res => {
-        showOutput(res)
-    })
-    .catch(err => {
-        console.log(err)
-    })
+    // axios.put('https://jsonplaceholder.typicode.com/todos/1', {
+    //     title: 'Updated Todo',
+    //     completed: true
+    // })
+    // .then(res => {
+    //     showOutput(res)
+    // })
+    // .catch(err => {
+    //     console.log(err)
+    // })
+
+    //PATCH Request
+    axios.patch('https://jsonplaceholder.typicode.com/todos/1', {
+            title: 'Updated Todo',
+            completed: true
+        })
+        .then(res => {
+            showOutput(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
 }
 
 // DELETE REQUEST
