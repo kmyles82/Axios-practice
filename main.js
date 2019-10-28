@@ -37,7 +37,23 @@ function getTodos() {
 
 // POST REQUEST
 function addTodo() {
-    console.log('POST Request');
+    //Method - 1
+    axios({
+        method: 'post',
+        url: 'https://jsonplaceholder.typicode.com/todos?',
+        data: {
+             userId: 2,
+             title: 'New Todo',         
+             completed: false
+        }
+    })
+    .then(res => {
+        console.log(res)
+        showOutput(res);
+    })
+    .catch(err => {
+    console.log(err)
+    })
 }
 
 // PUT/PATCH REQUEST
