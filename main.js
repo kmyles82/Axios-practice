@@ -97,7 +97,14 @@ function updateTodo() {
 
 // DELETE REQUEST
 function removeTodo() {
-    console.log('DELETE Request');
+    //PUT Delete
+    axios.delete('https://jsonplaceholder.typicode.com/todos/1')
+        .then(res => {
+            showOutput(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
 }
 
 // SIMULTANEOUS DATA
