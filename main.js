@@ -196,10 +196,7 @@ function transformResponse() {
 
 // ERROR HANDLING
 function errorHandling() {
-    axios.post('https://jsonplaceholder.typicode.com/todoss', {
-        title: 'New Todo',
-        completed: false
-    })
+    axios.get('https://jsonplaceholder.typicode.com/todoss')
     .then(res => {
         showOutput(res)
     })
@@ -210,12 +207,37 @@ function errorHandling() {
             console.log(err.response.status)
             console.log(err.response.headers)
         }
+
+        if (err.response.status === 404) {
+            alert('Error: Page not found')
+        } else if (err.request) {
+            //Request was made but no response
+            console.error(err.request)
+        } else {
+            console.error(err.message)
+        }
     })
 }
 
 // CANCEL TOKEN
 function cancelToken() {
-    console.log('Cancel Token');
+    const source = axios.CancelToken.source();
+
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5', {
+        cancelToken: source.token,
+    })
+        .then(res => {
+            showOutput(res)
+        })
+        .catch(thrown => {
+            if (axios.isCancel(thrown)) {
+                console.log('Request canceled', thrown.message)
+            }
+        });
+    
+    if (true) {
+        source.cancel('Request canceled')
+    }
 }
 
 // INTERCEPTING REQUESTS & RESPONSES
